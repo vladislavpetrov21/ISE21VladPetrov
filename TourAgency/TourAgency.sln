@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyBusinessLogic", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyListImplement", "TourAgencyListImplement\TourAgencyListImplement.csproj", "{919A73B6-721E-422F-87A6-25C830D83756}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyFileImplement", "TourAgencyFileImplement\TourAgencyFileImplement.csproj", "{0A668796-C498-4175-8129-9239065787AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{919A73B6-721E-422F-87A6-25C830D83756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{919A73B6-721E-422F-87A6-25C830D83756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{919A73B6-721E-422F-87A6-25C830D83756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A668796-C498-4175-8129-9239065787AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A668796-C498-4175-8129-9239065787AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A668796-C498-4175-8129-9239065787AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A668796-C498-4175-8129-9239065787AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

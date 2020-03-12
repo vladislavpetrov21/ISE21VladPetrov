@@ -148,6 +148,10 @@
       <Project>{3c770076-652b-413c-8f1c-2785837dbfd2}</Project>
       <Name>TourAgencyBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TourAgencyFileImplement\TourAgencyFileImplement.csproj">
+      <Project>{0a668796-c498-4175-8129-9239065787af}</Project>
+      <Name>TourAgencyFileImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TourAgencyListImplement\TourAgencyListImplement.csproj">
       <Project>{919a73b6-721e-422f-87a6-25c830d83756}</Project>
       <Name>TourAgencyListImplement</Name>
