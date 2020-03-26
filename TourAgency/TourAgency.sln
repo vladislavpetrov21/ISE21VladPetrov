@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyView", "TourAgencyView\TourAgencyView.csproj", "{D8A57F79-9482-408C-AF8E-52E11CBB2E24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyBusinessLogic", "TourAgencyBusinessLogic\TourAgencyBusinessLogic.csproj", "{3C770076-652B-413C-8F1C-2785837DBFD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourAgencyBusinessLogic", "TourAgencyBusinessLogic\TourAgencyBusinessLogic.csproj", "{3C770076-652B-413C-8F1C-2785837DBFD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyListImplement", "TourAgencyListImplement\TourAgencyListImplement.csproj", "{919A73B6-721E-422F-87A6-25C830D83756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourAgencyListImplement", "TourAgencyListImplement\TourAgencyListImplement.csproj", "{919A73B6-721E-422F-87A6-25C830D83756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyFileImplement", "TourAgencyFileImplement\TourAgencyFileImplement.csproj", "{0A668796-C498-4175-8129-9239065787AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourAgencyFileImplement", "TourAgencyFileImplement\TourAgencyFileImplement.csproj", "{0A668796-C498-4175-8129-9239065787AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourAgencyDatabaseImplement", "TourAgencyDatabaseImplement\TourAgencyDatabaseImplement.csproj", "{AB92117C-67E8-4874-B830-9839EEFC15D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0A668796-C498-4175-8129-9239065787AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A668796-C498-4175-8129-9239065787AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A668796-C498-4175-8129-9239065787AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB92117C-67E8-4874-B830-9839EEFC15D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB92117C-67E8-4874-B830-9839EEFC15D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB92117C-67E8-4874-B830-9839EEFC15D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB92117C-67E8-4874-B830-9839EEFC15D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

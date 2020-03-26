@@ -44,7 +44,7 @@
             // 
             // buttonCreateOrder
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(605, 56);
+            this.buttonCreateOrder.Location = new System.Drawing.Point(632, 56);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
             this.buttonCreateOrder.Size = new System.Drawing.Size(142, 32);
             this.buttonCreateOrder.TabIndex = 0;
@@ -54,7 +54,7 @@
             // 
             // buttonTakeOrderInWork
             // 
-            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(604, 111);
+            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(632, 114);
             this.buttonTakeOrderInWork.Name = "buttonTakeOrderInWork";
             this.buttonTakeOrderInWork.Size = new System.Drawing.Size(142, 33);
             this.buttonTakeOrderInWork.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             // buttonOrderReady
             // 
-            this.buttonOrderReady.Location = new System.Drawing.Point(605, 169);
+            this.buttonOrderReady.Location = new System.Drawing.Point(632, 167);
             this.buttonOrderReady.Name = "buttonOrderReady";
             this.buttonOrderReady.Size = new System.Drawing.Size(140, 31);
             this.buttonOrderReady.TabIndex = 2;
@@ -74,7 +74,7 @@
             // 
             // buttonPayOrder
             // 
-            this.buttonPayOrder.Location = new System.Drawing.Point(605, 227);
+            this.buttonPayOrder.Location = new System.Drawing.Point(632, 225);
             this.buttonPayOrder.Name = "buttonPayOrder";
             this.buttonPayOrder.Size = new System.Drawing.Size(139, 32);
             this.buttonPayOrder.TabIndex = 3;
@@ -84,7 +84,7 @@
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(605, 285);
+            this.buttonRef.Location = new System.Drawing.Point(636, 289);
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(138, 35);
             this.buttonRef.TabIndex = 4;
@@ -97,7 +97,7 @@
             this.dataGridViewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMain.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewMain.Name = "dataGridViewMain";
-            this.dataGridViewMain.Size = new System.Drawing.Size(574, 404);
+            this.dataGridViewMain.Size = new System.Drawing.Size(621, 404);
             this.dataGridViewMain.TabIndex = 5;
             // 
             // menuStripMain
@@ -122,14 +122,14 @@
             // турыToolStripMenuItem
             // 
             this.турыToolStripMenuItem.Name = "турыToolStripMenuItem";
-            this.турыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.турыToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.турыToolStripMenuItem.Text = "Туры";
             this.турыToolStripMenuItem.Click += new System.EventHandler(this.ТурыToolStripMenuItem_Click);
             // 
             // путевкиToolStripMenuItem
             // 
             this.путевкиToolStripMenuItem.Name = "путевкиToolStripMenuItem";
-            this.путевкиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.путевкиToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.путевкиToolStripMenuItem.Text = "Путевки";
             this.путевкиToolStripMenuItem.Click += new System.EventHandler(this.ПутевкиToolStripMenuItem_Click);
             // 
@@ -154,6 +154,7 @@
             this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
