@@ -14,8 +14,7 @@ namespace TourAgencyDatabaseImplement.Models
         [ForeignKey("VoucherId")]
         [Required]
         public decimal Price { get; set; }
-        public virtual Order Order { get; set; }
-        public virtual Tour Tour { get; set; }
-        public virtual VoucherTour VoucherTour { get; set; }
+        public virtual List<Order> Orders { get; set; }
+        public virtual List<VoucherTour> VoucherTours { get; set; }
     }
 }
