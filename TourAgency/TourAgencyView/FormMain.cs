@@ -20,10 +20,12 @@ namespace TourAgencyView
         public new IUnityContainer Container { get; set; }
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
+        private readonly ReportLogic reportLogic;
         public FormMain(MainLogic logic, IOrderLogic orderLogic)
         {
             InitializeComponent();
             this.logic = logic;
+            this.reportLogic = reportLogic;
             this.orderLogic = orderLogic;
         }
         private void FormMain_Load(object sender, EventArgs e)
@@ -115,6 +117,32 @@ namespace TourAgencyView
                    MessageBoxIcon.Error);
                 }
             }
+        }
+        private void списокТуровToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    reportLogic.SaveToursToWordFile(new ReportBindingModel
+                    {
+                        FileName =
+                   dialog.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void турыПоПутевкамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportVoucherTours>();
+            form.ShowDialog();
+        }
+        private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrders>();
+            form.ShowDialog();
         }
         private void ButtonRef_Click(object sender, EventArgs e)
         {
