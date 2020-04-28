@@ -10,8 +10,8 @@ using TourAgencyDatabaseImplement;
 namespace TourAgencyDatabaseImplement.Migrations
 {
     [DbContext(typeof(TourAgencyDatabase))]
-    [Migration("20200313065807_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200428134525_TouragencyDop")]
+    partial class TouragencyDop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,16 +79,11 @@ namespace TourAgencyDatabaseImplement.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("TourId")
-                        .HasColumnType("int");
-
                     b.Property<string>("VoucherName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TourId");
 
                     b.ToTable("Vouchers");
                 });
@@ -113,8 +108,7 @@ namespace TourAgencyDatabaseImplement.Migrations
 
                     b.HasIndex("TourId");
 
-                    b.HasIndex("VoucherId")
-                        .IsUnique();
+                    b.HasIndex("VoucherId");
 
                     b.ToTable("VoucherTours");
                 });
@@ -122,17 +116,10 @@ namespace TourAgencyDatabaseImplement.Migrations
             modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("TourAgencyDatabaseImplement.Models.Voucher", "Voucher")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("VoucherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Voucher", b =>
-                {
-                    b.HasOne("TourAgencyDatabaseImplement.Models.Tour", "Tour")
-                        .WithMany()
-                        .HasForeignKey("TourId");
                 });
 
             modelBuilder.Entity("TourAgencyDatabaseImplement.Models.VoucherTour", b =>
@@ -144,8 +131,8 @@ namespace TourAgencyDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("TourAgencyDatabaseImplement.Models.Voucher", "Voucher")
-                        .WithOne("VoucherTour")
-                        .HasForeignKey("TourAgencyDatabaseImplement.Models.VoucherTour", "VoucherId")
+                        .WithMany("VoucherTours")
+                        .HasForeignKey("VoucherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

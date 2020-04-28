@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TourAgencyDatabaseImplement.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class TouragencyDop : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,18 +27,11 @@ namespace TourAgencyDatabaseImplement.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VoucherName = table.Column<string>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    TourId = table.Column<int>(nullable: true)
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vouchers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Vouchers_Tours_TourId",
-                        column: x => x.TourId,
-                        principalTable: "Tours",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,11 +91,6 @@ namespace TourAgencyDatabaseImplement.Migrations
                 column: "VoucherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vouchers_TourId",
-                table: "Vouchers",
-                column: "TourId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_VoucherTours_TourId",
                 table: "VoucherTours",
                 column: "TourId");
@@ -110,8 +98,7 @@ namespace TourAgencyDatabaseImplement.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_VoucherTours_VoucherId",
                 table: "VoucherTours",
-                column: "VoucherId",
-                unique: true);
+                column: "VoucherId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -123,10 +110,10 @@ namespace TourAgencyDatabaseImplement.Migrations
                 name: "VoucherTours");
 
             migrationBuilder.DropTable(
-                name: "Vouchers");
+                name: "Tours");
 
             migrationBuilder.DropTable(
-                name: "Tours");
+                name: "Vouchers");
         }
     }
 }
