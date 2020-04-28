@@ -81,12 +81,14 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 Orders = GetOrders(model)
             });
         }
+
+        [Obsolete]
         public void SaveVoucherToursToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Детализация пакетов ",
+                Title = "туры ",
                 VoucherTours = GetVoucherTour()
             });
         }

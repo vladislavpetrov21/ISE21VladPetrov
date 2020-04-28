@@ -34,7 +34,11 @@
             this.labelFrom = new System.Windows.Forms.Label();
             this.buttonMake = new System.Windows.Forms.Button();
             this.buttonToExcel = new System.Windows.Forms.Button();
-            this.reportViewerOrder = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
+            this.DateCreate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Voucher = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePickerFrom
@@ -89,21 +93,50 @@
             this.buttonToExcel.UseVisualStyleBackColor = true;
             this.buttonToExcel.Click += new System.EventHandler(this.buttonSaveToExcel_Click);
             // 
-            // reportViewerOrder
+            // dataGridViewOrders
             // 
-            this.reportViewerOrder.LocalReport.ReportEmbeddedResource = "TourAgencyView.ReportTouragency.rdlc";
-            this.reportViewerOrder.Location = new System.Drawing.Point(9, 51);
-            this.reportViewerOrder.Name = "reportViewerOrder";
-            this.reportViewerOrder.ServerReport.BearerToken = null;
-            this.reportViewerOrder.Size = new System.Drawing.Size(768, 387);
-            this.reportViewerOrder.TabIndex = 6;
+            this.dataGridViewOrders.AllowUserToAddRows = false;
+            this.dataGridViewOrders.AllowUserToDeleteRows = false;
+            this.dataGridViewOrders.AllowUserToResizeRows = false;
+            this.dataGridViewOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DateCreate,
+            this.Voucher,
+            this.Sum});
+            this.dataGridViewOrders.Location = new System.Drawing.Point(8, 51);
+            this.dataGridViewOrders.Name = "dataGridViewOrders";
+            this.dataGridViewOrders.ReadOnly = true;
+            this.dataGridViewOrders.RowHeadersVisible = false;
+            this.dataGridViewOrders.Size = new System.Drawing.Size(764, 330);
+            this.dataGridViewOrders.TabIndex = 6;
+            // 
+            // DateCreate
+            // 
+            this.DateCreate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DateCreate.HeaderText = "Дата создания";
+            this.DateCreate.Name = "DateCreate";
+            this.DateCreate.ReadOnly = true;
+            // 
+            // Voucher
+            // 
+            this.Voucher.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Voucher.HeaderText = "Название путевки";
+            this.Voucher.Name = "Voucher";
+            this.Voucher.ReadOnly = true;
+            // 
+            // Sum
+            // 
+            this.Sum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Sum.HeaderText = "Сумма";
+            this.Sum.Name = "Sum";
+            this.Sum.ReadOnly = true;
             // 
             // FormReportOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.reportViewerOrder);
+            this.Controls.Add(this.dataGridViewOrders);
             this.Controls.Add(this.buttonToExcel);
             this.Controls.Add(this.buttonMake);
             this.Controls.Add(this.labelFrom);
@@ -112,6 +145,7 @@
             this.Controls.Add(this.dateTimePickerFrom);
             this.Name = "FormReportOrders";
             this.Text = "Заказы клиентов";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,6 +159,9 @@
         private System.Windows.Forms.Label labelFrom;
         private System.Windows.Forms.Button buttonMake;
         private System.Windows.Forms.Button buttonToExcel;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewerOrder;
+        private System.Windows.Forms.DataGridView dataGridViewOrders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateCreate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Voucher;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
     }
 }

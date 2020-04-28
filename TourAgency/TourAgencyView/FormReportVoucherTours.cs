@@ -30,7 +30,7 @@ namespace TourAgencyView
             try
             {
                 var dataSource = logic.GetVoucherTour();
-                ReportDataSource source = new ReportDataSource("DataSetAD", dataSource);
+                ReportDataSource source = new ReportDataSource("DataSetVoucherTours", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }
@@ -38,9 +38,10 @@ namespace TourAgencyView
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
-            }
+            }           
         }
 
+        [Obsolete]
         private void buttonToPdf_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })

@@ -99,6 +99,11 @@
             // dataGridViewMain
             // 
             this.dataGridViewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMain.AllowUserToAddRows = false;
+            this.dataGridViewMain.AllowUserToDeleteRows = false;
+            this.dataGridViewMain.RowTemplate.Height = 28;
+            this.dataGridViewMain.AllowUserToResizeRows = false;
+            this.dataGridViewMain.ReadOnly = true;
             this.dataGridViewMain.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewMain.Name = "dataGridViewMain";
             this.dataGridViewMain.Size = new System.Drawing.Size(621, 404);

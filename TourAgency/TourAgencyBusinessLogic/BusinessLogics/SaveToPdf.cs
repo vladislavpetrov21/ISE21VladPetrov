@@ -10,6 +10,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
 {
     class SaveToPdf
     {
+        [Obsolete]
         public static void CreateDoc(PdfInfo info)
         {
             Document document = new Document();
@@ -28,7 +29,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Пакет", "ПО", "Количество" },
+                Texts = new List<string> { "Путевка", "Тур", "Количество" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });

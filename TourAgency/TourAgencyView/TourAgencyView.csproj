@@ -288,10 +288,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReportTouragency.rdlc" />
+    <EmbeddedResource Include="Report.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\TourAgencyBusinessLogic.ViewModels.OrderViewModel.datasource" />
     <None Include="Properties\DataSources\TourAgencyBusinessLogic.ViewModels.ReportOrdersViewModel.datasource" />
+    <None Include="Properties\DataSources\TourAgencyBusinessLogic.ViewModels.ReportVoucherTourViewModel.datasource" />
     <None Include="Properties\DataSources\TourAgencyBusinessLogic.ViewModels.TourViewModel.datasource" />
     <None Include="Properties\DataSources\TourAgencyBusinessLogic.ViewModels.VoucherViewModel.datasource" />
     <None Include="Properties\Settings.settings">
