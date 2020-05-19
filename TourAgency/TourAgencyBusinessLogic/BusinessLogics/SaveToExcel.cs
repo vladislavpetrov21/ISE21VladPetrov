@@ -71,7 +71,6 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                         dates.Add(order.DateCreate.Date);
                     }
                 }
-
                 foreach (var date in dates)
                 {
                     decimal generalSum = 0;
@@ -85,7 +84,6 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                         StyleIndex = 0U
                     });
                     rowIndex++;
-
                     foreach (var order in info.Orders.Where(rec => rec.DateCreate.Date == date.Date))
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
@@ -97,7 +95,6 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                             Text = order.VoucherName,
                             StyleIndex = 1U
                         });
-
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
                             Worksheet = worksheetPart.Worksheet,
@@ -110,7 +107,6 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                         generalSum += order.Sum;
                         rowIndex++;
                     }
-
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         Worksheet = worksheetPart.Worksheet,
@@ -120,7 +116,6 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                         Text = "Общая сумма:",
                         StyleIndex = 0U
                     });
-
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         Worksheet = worksheetPart.Worksheet,
