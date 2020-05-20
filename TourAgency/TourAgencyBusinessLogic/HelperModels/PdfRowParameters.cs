@@ -1,8 +1,8 @@
-﻿using MigraDoc.DocumentObjectModel.Tables;
-using MigraDoc.DocumentObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Tables;
 
 namespace TourAgencyBusinessLogic.HelperModels
 {

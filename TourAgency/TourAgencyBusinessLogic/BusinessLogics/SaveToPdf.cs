@@ -20,6 +20,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             paragraph.Format.SpaceAfter = "1cm";
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "NormalTitle";
+            paragraph.Style = "Normal";
             var table = document.LastSection.AddTable();
             List<string> columns = new List<string> { "6cm", "6cm", "6cm" };
             foreach (var elem in columns)
@@ -33,32 +34,28 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
-            foreach (var ad in info.VoucherTours)
+            foreach (var vt in info.VoucherTours)
             {
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    Texts = new List<string> {
-                        ad.VoucherName,
-                        ad.TourName,
-                        ad.Count.ToString()
+                    Texts = new List<string>
+                    {
+                        vt.VoucherName,
+                        vt.TourName,
+                        vt.Count.ToString()
                     },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left
                 });
             }
-            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true,
-                PdfSharp.Pdf.PdfFontEmbedding.Always)
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always)
             {
                 Document = document
             };
             renderer.RenderDocument();
             renderer.PdfDocument.Save(info.FileName);
         }
-        /// <summary>
-        /// Создание стилей для документа
-        /// </summary>
-        /// <param name="document"></param>
         private static void DefineStyles(Document document)
         {
             Style style = document.Styles["Normal"];
@@ -67,10 +64,6 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             style = document.Styles.AddStyle("NormalTitle", "Normal");
             style.Font.Bold = true;
         }
-        /// <summary>
-        /// Создание и заполнение строки
-        /// </summary>
-        /// <param name="rowParameters"></param>
         private static void CreateRow(PdfRowParameters rowParameters)
         {
             Row row = rowParameters.Table.AddRow();
@@ -86,10 +79,6 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 });
             }
         }
-        /// <summary>
-        /// Заполнение ячейки
-        /// </summary>
-        /// <param name="cellParameters"></param>
         private static void FillCell(PdfCellParameters cellParameters)
         {
             cellParameters.Cell.AddParagraph(cellParameters.Text);

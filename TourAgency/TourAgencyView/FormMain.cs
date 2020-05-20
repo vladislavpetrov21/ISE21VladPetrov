@@ -20,13 +20,13 @@ namespace TourAgencyView
         public new IUnityContainer Container { get; set; }
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
-        private readonly ReportLogic reportLogic;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic, ReportLogic reportLogic)
+        private readonly ReportLogic report;
+        public FormMain(MainLogic logic, IOrderLogic orderLogic, ReportLogic report)
         {
             InitializeComponent();
             this.logic = logic;
-            this.reportLogic = reportLogic;
             this.orderLogic = orderLogic;
+            this.report = report;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -118,34 +118,36 @@ namespace TourAgencyView
                 }
             }
         }
+       
+        private void ButtonRef_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
         private void списокТуровToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    reportLogic.SaveToursToWordFile(new ReportBindingModel
+                    report.SaveVouchersToWordFile(new ReportBindingModel
                     {
-                        FileName = dialog.FileName
+                        FileName =
+                   dialog.FileName
                     });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                    MessageBoxIcon.Information);
                 }
             }
         }
-        private void турыПоПутевкамToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormReportVoucherTours>();
-            form.ShowDialog();
-        }
         private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
-        private void ButtonRef_Click(object sender, EventArgs e)
+        private void турыПоПутевкамToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadData();
+            var form = Container.Resolve<FormReportVoucherTours>();
+            form.ShowDialog();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using TourAgencyBusinessLogic.ViewModels;
 
 namespace TourAgencyBusinessLogic.HelperModels
@@ -12,6 +13,5 @@ namespace TourAgencyBusinessLogic.HelperModels
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
         public List<ReportOrdersViewModel> Orders { get; set; }
-        public List<ReportVoucherTourViewModel> VoucherTours { get; set; }
     }
 }

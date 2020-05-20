@@ -27,46 +27,44 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-        {            
+        {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.buttonSaveToPdf = new System.Windows.Forms.Button();
             this.buttonMake = new System.Windows.Forms.Button();
+            this.buttonToPdf = new System.Windows.Forms.Button();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.ReportVoucherTourViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ReportVoucherTourViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // buttonSaveToPdf
-            // 
-            this.buttonSaveToPdf.Location = new System.Drawing.Point(482, 13);
-            this.buttonSaveToPdf.Name = "buttonSaveToPdf";
-            this.buttonSaveToPdf.Size = new System.Drawing.Size(139, 30);
-            this.buttonSaveToPdf.TabIndex = 0;
-            this.buttonSaveToPdf.Text = "в pdf";
-            this.buttonSaveToPdf.UseVisualStyleBackColor = true;
-            this.buttonSaveToPdf.Click += new System.EventHandler(this.buttonToPdf_Click);
-            // 
             // buttonMake
             // 
-            this.buttonMake.Location = new System.Drawing.Point(200, 13);
+            this.buttonMake.Location = new System.Drawing.Point(251, 15);
             this.buttonMake.Name = "buttonMake";
-            this.buttonMake.Size = new System.Drawing.Size(160, 30);
-            this.buttonMake.TabIndex = 1;
+            this.buttonMake.Size = new System.Drawing.Size(85, 31);
+            this.buttonMake.TabIndex = 0;
             this.buttonMake.Text = "Сформировать";
             this.buttonMake.UseVisualStyleBackColor = true;
-            this.buttonMake.Click += new System.EventHandler(this.buttonMake_Click);
+            this.buttonMake.Click += new System.EventHandler(this.ButtonMake_Click);
+            // 
+            // buttonToPdf
+            // 
+            this.buttonToPdf.Location = new System.Drawing.Point(427, 18);
+            this.buttonToPdf.Name = "buttonToPdf";
+            this.buttonToPdf.Size = new System.Drawing.Size(97, 28);
+            this.buttonToPdf.TabIndex = 1;
+            this.buttonToPdf.Text = "В pdf";
+            this.buttonToPdf.UseVisualStyleBackColor = true;
+            this.buttonToPdf.Click += new System.EventHandler(this.ButtonToPdf_Click);
             // 
             // reportViewer
             // 
-            reportDataSource1.Name = "DataSetVoucherTours";
-            reportDataSource1.Value = this.ReportVoucherTourViewModelBindingSource;
-            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer.DocumentMapWidth = 93;
             this.reportViewer.LocalReport.ReportEmbeddedResource = "TourAgencyView.Report.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(20, 53);
+            this.reportViewer.Location = new System.Drawing.Point(12, 52);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(726, 385);
+            this.reportViewer.Size = new System.Drawing.Size(747, 275);
             this.reportViewer.TabIndex = 2;
             // 
             // ReportVoucherTourViewModelBindingSource
@@ -79,18 +77,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer);
+            this.Controls.Add(this.buttonToPdf);
             this.Controls.Add(this.buttonMake);
-            this.Controls.Add(this.buttonSaveToPdf);
             this.Name = "FormReportVoucherTours";
-            this.Text = "Туры по путевкам";
+            this.Text = "Отчет по турам и путевкам";
             ((System.ComponentModel.ISupportInitialize)(this.ReportVoucherTourViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion
 
-        private System.Windows.Forms.Button buttonSaveToPdf;
         private System.Windows.Forms.Button buttonMake;
+        private System.Windows.Forms.Button buttonToPdf;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource ReportVoucherTourViewModelBindingSource;
     }

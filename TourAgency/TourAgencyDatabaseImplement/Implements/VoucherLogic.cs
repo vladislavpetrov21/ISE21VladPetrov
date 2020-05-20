@@ -128,7 +128,7 @@ namespace TourAgencyDatabaseImplement.Implements
                    VoucherTours = context.VoucherTours
                 .Include(recPC => recPC.Tour)
                .Where(recPC => recPC.VoucherId == rec.Id)
-               .ToDictionary(recPC => recPC.TourId, recPC =>
+               .ToDictionary(recPC => recPC.VoucherId, recPC =>
                 (recPC.Tour?.TourName, recPC.Count))
                })
                .ToList();

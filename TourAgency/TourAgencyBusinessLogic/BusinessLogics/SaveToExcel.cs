@@ -1,34 +1,30 @@
-﻿using DocumentFormat.OpenXml;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Office2013.Excel;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TourAgencyBusinessLogic.HelperModels;
 
 namespace TourAgencyBusinessLogic.BusinessLogics
 {
-    class SaveToExcel
+    static class SaveToExcel
     {
         public static void CreateDoc(ExcelInfo info)
         {
-            using (SpreadsheetDocument spreadsheetDocument =
-                SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook))
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create(info.FileName, SpreadsheetDocumentType.Workbook))
             {
                 // Создаем книгу (в ней хранятся листы)
                 WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
                 workbookpart.Workbook = new Workbook();
                 CreateStyles(workbookpart);
                 // Получаем/создаем хранилище текстов для книги
-                SharedStringTablePart shareStringPart =
-                spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0
-                ?
-                spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
-                :
-                spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
+                SharedStringTablePart shareStringPart = spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().Count() > 0
+                ? spreadsheetDocument.WorkbookPart.GetPartsOfType<SharedStringTablePart>().First()
+                : spreadsheetDocument.WorkbookPart.AddNewPart<SharedStringTablePart>();
                 // Создаем SharedStringTable, если его нет
                 if (shareStringPart.SharedStringTable == null)
                 {
@@ -38,8 +34,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
                 worksheetPart.Worksheet = new Worksheet(new SheetData());
                 // Добавляем лист в книгу
-                Sheets sheets =
-                spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+                Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
                 Sheet sheet = new Sheet()
                 {
                     Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart),
@@ -73,7 +68,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 }
                 foreach (var date in dates)
                 {
-                    decimal generalSum = 0;
+                    decimal dateSum = 0;
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
                         Worksheet = worksheetPart.Worksheet,
@@ -104,7 +99,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                             Text = order.Sum.ToString(),
                             StyleIndex = 1U
                         });
-                        generalSum += order.Sum;
+                        dateSum += order.Sum;
                         rowIndex++;
                     }
                     InsertCellInWorksheet(new ExcelCellParameters
@@ -113,7 +108,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = "Общая сумма:",
+                        Text = "Итого",
                         StyleIndex = 0U
                     });
                     InsertCellInWorksheet(new ExcelCellParameters
@@ -122,7 +117,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                         ShareStringPart = shareStringPart,
                         ColumnName = "C",
                         RowIndex = rowIndex,
-                        Text = generalSum.ToString(),
+                        Text = dateSum.ToString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
@@ -265,11 +260,11 @@ namespace TourAgencyBusinessLogic.BusinessLogics
            VerticalAlignmentValues.Center,
                     WrapText = true,
                     Horizontal =
-           HorizontalAlignmentValues.Center
+    HorizontalAlignmentValues.Center
                 },
                 ApplyFont = true
             };
-        cellFormats.Append(cellFormatFont);
+            cellFormats.Append(cellFormatFont);
             cellFormats.Append(cellFormatFontAndBorder);
             cellFormats.Append(cellFormatTitle);
             CellStyles cellStyles = new CellStyles() { Count = (UInt32Value)1U };
@@ -345,8 +340,8 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             if (sheetData.Elements<Row>().Where(r => r.RowIndex ==
            cellParameters.RowIndex).Count() != 0)
             {
-            row = sheetData.Elements<Row>().Where(r => r.RowIndex ==
-            cellParameters.RowIndex).First();
+                row = sheetData.Elements<Row>().Where(r => r.RowIndex ==
+    cellParameters.RowIndex).First();
             }
             else
             {

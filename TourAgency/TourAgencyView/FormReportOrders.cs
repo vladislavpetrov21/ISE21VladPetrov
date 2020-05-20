@@ -1,5 +1,4 @@
-﻿using Microsoft.Reporting.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,52 +23,6 @@ namespace TourAgencyView
             InitializeComponent();
             this.logic = logic;
         }
-        private void ButtonMake_Click(object sender, EventArgs e)
-        {
-            if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
-            {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            try
-            {
-                var dict = logic.GetOrders(new ReportBindingModel
-                {
-                    DateFrom = dateTimePickerFrom.Value.Date,
-                    DateTo = dateTimePickerTo.Value.Date
-                });
-                List<DateTime> dates = new List<DateTime>();
-                foreach (var order in dict)
-                {
-                    if (!dates.Contains(order.DateCreate.Date))
-                    {
-                        dates.Add(order.DateCreate.Date);
-                    }
-                }
-                if (dict != null)
-                {
-                    dataGridViewOrders.Rows.Clear();
-                    foreach (var date in dates)
-                    {
-                        decimal generalSum = 0;
-                        dataGridViewOrders.Rows.Add(new object[] { date.Date.ToShortDateString() });
-
-                        foreach (var order in dict.Where(rec => rec.DateCreate.Date == date.Date))
-                        {
-                            dataGridViewOrders.Rows.Add(new object[] { "", order.VoucherName, order.Sum });
-                            generalSum += order.Sum;
-                        }
-                        dataGridViewOrders.Rows.Add(new object[] { "Итого: ", "", generalSum });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-            }
-        }
         private void buttonSaveToExcel_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
@@ -78,8 +31,7 @@ namespace TourAgencyView
                 {
                     if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
                     {
-                        MessageBox.Show("Дата начала должна быть меньше даты окончания",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     try
@@ -91,14 +43,49 @@ namespace TourAgencyView
                             DateTo = dateTimePickerTo.Value.Date,
                         });
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
-                    {
+                    { 
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                       MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+        private void buttonMake_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var dict = logic.GetOrders(new ReportBindingModel { DateFrom = dateTimePickerFrom.Value.Date, DateTo = dateTimePickerTo.Value.Date });
+                List<DateTime> dates = new List<DateTime>();
+                foreach (var order in dict)
+                {
+                    if (!dates.Contains(order.DateCreate.Date))
+                    {
+                        dates.Add(order.DateCreate.Date);
+                    }
+                }
+                if (dict != null)
+                {
+                    dataGridView.Rows.Clear();
+                    foreach (var date in dates)
+                    {
+                        decimal dateSum = 0;
+                        dataGridView.Rows.Add(new object[] { date.Date.ToShortDateString(), "", "" });
+                        foreach (var order in dict.Where(rec => rec.DateCreate.Date == date.Date))
+                        {
+                            dataGridView.Rows.Add(new object[] { "", order.VoucherName, order.Sum });
+                            dateSum += order.Sum;
+                        }
+                        dataGridView.Rows.Add(new object[] { "Итого", "", dateSum });
+                        dataGridView.Rows.Add(new object[] { });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

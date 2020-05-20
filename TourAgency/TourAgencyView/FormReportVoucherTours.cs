@@ -24,25 +24,24 @@ namespace TourAgencyView
             InitializeComponent();
             this.logic = logic;
         }
-
-        private void buttonMake_Click(object sender, EventArgs e)
+        private void ButtonMake_Click(object sender, EventArgs e)
         {
             try
             {
                 var dataSource = logic.GetVoucherTour();
                 ReportDataSource source = new ReportDataSource("DataSetVoucherTours", dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
-                reportViewer.RefreshReport();
+               reportViewer.RefreshReport();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-            }           
+               MessageBoxIcon.Error);
+            }
         }
 
         [Obsolete]
-        private void buttonToPdf_Click(object sender, EventArgs e)
+        private void ButtonToPdf_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
             {
@@ -50,17 +49,15 @@ namespace TourAgencyView
                 {
                     try
                     {
-                        logic.SaveVoucherToursToPdfFile(new ReportBindingModel
+                        logic.SaveVouchersToPdfFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName,
                         });
-                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
