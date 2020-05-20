@@ -43,23 +43,20 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 }
             }
             return list;
-        }        
-        public List<ReportOrdersViewModel> GetOrders(ReportBindingModel model)
+        }
+        public List<IGrouping<DateTime, OrderViewModel>> GetOrders(ReportBindingModel model)
         {
-            return orderLogic.Read(new OrderBindingModel
+            var list = orderLogic
+            .Read(new OrderBindingModel
             {
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo
             })
-            .Select(x => new ReportOrdersViewModel
-            {
-                DateCreate = x.DateCreate,
-                VoucherName = x.VoucherName,
-                Count = x.Count,
-                Sum = x.Sum,
-                Status = x.Status
-            })
-           .ToList();
+            .GroupBy(rec => rec.DateCreate.Date)
+            .OrderBy(recG => recG.Key)
+            .ToList();
+
+            return list;
         }
         /// <summary>
         /// Сохранение компонент в файл-Word
@@ -82,14 +79,11 @@ namespace TourAgencyBusinessLogic.BusinessLogics
         {
             SaveToExcel.CreateDoc(new ExcelInfo
             {
-                DateFrom = model.DateFrom.Value,
-                DateTo = model.DateTo.Value,
                 FileName = model.FileName,
                 Title = "Список заказов",
                 Orders = GetOrders(model)
             });
         }
-
         /// <summary>
         /// Сохранение закусок с продуктами в файл-Pdf
         /// </summary>
