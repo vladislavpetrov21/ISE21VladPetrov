@@ -20,5 +20,6 @@ namespace TourAgencyDatabaseImplement
         public virtual DbSet<Voucher> Vouchers { set; get; }
         public virtual DbSet<VoucherTour> VoucherTours { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Client> Clients { set; get; }
     }
 }

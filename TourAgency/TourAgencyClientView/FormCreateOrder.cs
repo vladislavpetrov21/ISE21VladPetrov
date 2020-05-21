@@ -3,45 +3,28 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TourAgencyBusinessLogic.BindingModels;
-using TourAgencyBusinessLogic.BusinessLogics;
-using TourAgencyBusinessLogic.Interfaces;
 using TourAgencyBusinessLogic.ViewModels;
-using Unity;
 
-namespace TourAgencyView
+namespace TourAgencyClientView
 {
     public partial class FormCreateOrder : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IVoucherLogic logicP;
-        private readonly IClientLogic logicC;
-        private readonly MainLogic logicM;
-        public FormCreateOrder(IVoucherLogic logicP, IClientLogic logicC, MainLogic logicM)
+        public FormCreateOrder()
         {
             InitializeComponent();
-            this.logicP = logicP;
-            this.logicM = logicM;
-            this.logicC = logicC;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                var list = logicP.Read(null);
-                comboBoxVoucher.DataSource = list;
-                comboBoxVoucher.DisplayMember = "VoucherName";
-                comboBoxVoucher.ValueMember = "Id";
-                var listC = logicC.Read(null);
-                comboBoxClient.DisplayMember = "ClientFIO";
-                comboBoxClient.ValueMember = "Id";
-                comboBoxClient.DataSource = listC;
-                comboBoxClient.SelectedItem = null;
+                comboBoxSnack.DisplayMember = "SnackName";
+                comboBoxSnack.ValueMember = "Id";
+                comboBoxSnack.DataSource =
+               APIClient.GetRequest<List<VoucherViewModel>>("api/main/getSnacklist");
+                comboBoxSnack.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -51,18 +34,16 @@ namespace TourAgencyView
         }
         private void CalcSum()
         {
-            if (comboBoxVoucher.SelectedValue != null &&
+            if (comboBoxSnack.SelectedValue != null &&
            !string.IsNullOrEmpty(textBoxCount.Text))
             {
                 try
                 {
-                    int id = Convert.ToInt32(comboBoxVoucher.SelectedValue);
-                    VoucherViewModel product = logicP.Read(new VoucherBindingModel
-                    {
-                        Id = id
-                    })?[0];
+                    int id = Convert.ToInt32(comboBoxSnack.SelectedValue);
+                    VoucherViewModel Snack =
+APIClient.GetRequest<VoucherViewModel>($"api/main/getSnack?SnackId={id}");
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * product?.Price ?? 0).ToString();
+                    textBoxSum.Text = (count * Snack.Price).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -75,7 +56,7 @@ namespace TourAgencyView
         {
             CalcSum();
         }
-        private void ComboBoxVoucher_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxSnack_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -87,7 +68,7 @@ namespace TourAgencyView
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxVoucher.SelectedValue == null)
+            if (comboBoxSnack.SelectedValue == null)
             {
                 MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -95,15 +76,15 @@ namespace TourAgencyView
             }
             try
             {
-                logicM.CreateOrder(new CreateOrderBindingModel
+                APIClient.PostRequest("api/main/createorder", new CreateOrderBindingModel
                 {
-                    VoucherId = Convert.ToInt32(comboBoxVoucher.SelectedValue),
-                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
+                    ClientId = Program.Client.Id,
+                    VoucherId = Convert.ToInt32(comboBoxSnack.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Заказ создан", "Сообщение", MessageBoxButtons.OK,
+               MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -112,11 +93,6 @@ namespace TourAgencyView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
             }
-        }
-        private void ButtonCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
         }
     }
 }

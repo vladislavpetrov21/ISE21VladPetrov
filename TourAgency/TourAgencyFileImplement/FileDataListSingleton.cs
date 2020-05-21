@@ -16,16 +16,19 @@ namespace TourAgencyFileImplement
         private readonly string OrderFileName = "C:\\Users\\par55\\Documents\\TourAgency\\Order.xml";
         private readonly string VoucherFileName = "C:\\Users\\par55\\Documents\\TourAgency\\Voucher.xml";
         private readonly string VoucherTourFileName = "C:\\Users\\par55\\Documents\\TourAgency\\VoucherTour.xml";
+        private readonly string ClientFileName = "C:\\Users\\par55\\Documents\\TourAgency\\Client.xml";
         public List<Tour> Tours { get; set; }
         public List<Order> Orders { get; set; }
         public List<Voucher> Vouchers { get; set; }
         public List<VoucherTour> VoucherTours { get; set; }
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Tours = LoadTours();
             Orders = LoadOrders();
             Vouchers = LoadVouchers();
             VoucherTours = LoadVoucherTours();
+            Clients = LoadClients();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -126,6 +129,26 @@ namespace TourAgencyFileImplement
             }
             return list;
         }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientFIO = elem.Element("ClientFIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
+                    });
+                }
+            }
+            return list;
+        }
         private void SaveTours()
         {
             if (Tours != null)
@@ -192,6 +215,23 @@ namespace TourAgencyFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(VoucherTourFileName);
+            }
+        }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("ClientFIO", client.ClientFIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
             }
         }
     }

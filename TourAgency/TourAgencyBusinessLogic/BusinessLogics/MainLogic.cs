@@ -19,6 +19,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 VoucherId = model.VoucherId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -43,6 +44,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 VoucherId = order.VoucherId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -68,6 +70,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 VoucherId = order.VoucherId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -93,6 +96,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 VoucherId = order.VoucherId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

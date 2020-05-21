@@ -21,12 +21,14 @@ namespace TourAgencyView
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
         private readonly ReportLogic report;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic, ReportLogic report)
+        private readonly IClientLogic client;
+        public FormMain(MainLogic logic, IOrderLogic orderLogic, ReportLogic report, IClientLogic client)
         {
             InitializeComponent();
             this.logic = logic;
             this.orderLogic = orderLogic;
             this.report = report;
+            this.client = client;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -42,7 +44,8 @@ namespace TourAgencyView
                     dataGridViewMain.DataSource = list;
                     dataGridViewMain.Columns[0].Visible = false;
                     dataGridViewMain.Columns[1].Visible = false;
-                    dataGridViewMain.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridViewMain.Columns[3].Visible = false;
+                    dataGridViewMain.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -147,6 +150,11 @@ namespace TourAgencyView
         private void турыПоПутевкамToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReportVoucherTours>();
+            form.ShowDialog();
+        }
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClients>();
             form.ShowDialog();
         }
     }

@@ -61,37 +61,39 @@ namespace TourAgencyListImplement.Implements
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var Order in source.Orders)
+            foreach (var order in source.Orders)
             {
                 if (model != null)
                 {
-                    if (Order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && Order.DateCreate >= model.DateFrom && Order.DateCreate <= model.DateTo))
+                    if (order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
+                        || model.ClientId.HasValue && order.ClientId == model.ClientId)
                     {
-                        result.Add(CreateViewModel(Order));
+                        result.Add(CreateViewModel(order));
                         break;
                     }
                     continue;
                 }
-                result.Add(CreateViewModel(Order));
+                result.Add(CreateViewModel(order));
             }
             return result;
         }
-        private Order CreateModel(OrderBindingModel model, Order Order)
+        private Order CreateModel(OrderBindingModel model, Order order)
         {
-            Order.VoucherId = model.VoucherId == 0 ? Order.VoucherId : model.VoucherId;
-            Order.Count = model.Count;
-            Order.Sum = model.Sum;
-            Order.Status = model.Status;
-            Order.DateCreate = model.DateCreate;
-            Order.DateImplement = model.DateImplement;
-            return Order;
+            order.VoucherId = model.VoucherId == 0 ? order.VoucherId : model.VoucherId;
+            order.ClientId = (int)model.ClientId;
+            order.Count = model.Count;
+            order.Sum = model.Sum;
+            order.Status = model.Status;
+            order.DateCreate = model.DateCreate;
+            order.DateImplement = model.DateImplement;
+            return order;
         }
-        private OrderViewModel CreateViewModel(Order Order)
+        private OrderViewModel CreateViewModel(Order order)
         {
             string VoucherName = "";
             for (int j = 0; j < source.Vouchers.Count; ++j)
             {
-                if (source.Vouchers[j].Id == Order.VoucherId)
+                if (source.Vouchers[j].Id == order.VoucherId)
                 {
                     VoucherName = source.Vouchers[j].VoucherName;
                     break;
@@ -99,13 +101,14 @@ namespace TourAgencyListImplement.Implements
             }
             return new OrderViewModel
             {
-                Id = Order.Id,
+                Id = order.Id,
                 VoucherName = VoucherName,
-                Count = Order.Count,
-                Sum = Order.Sum,
-                Status = Order.Status,
-                DateCreate = Order.DateCreate,
-                DateImplement = Order.DateImplement
+                ClientId = order.ClientId,
+                Count = order.Count,
+                Sum = order.Sum,
+                Status = order.Status,
+                DateCreate = order.DateCreate,
+                DateImplement = order.DateImplement
             };
         }
     }

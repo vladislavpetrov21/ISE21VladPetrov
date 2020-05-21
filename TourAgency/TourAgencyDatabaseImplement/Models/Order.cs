@@ -9,6 +9,7 @@ namespace TourAgencyDatabaseImplement.Models
     public class Order
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         public int VoucherId { get; set; }
         [Required]
         public int Count { get; set; }
@@ -20,5 +21,6 @@ namespace TourAgencyDatabaseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Voucher Voucher { get; set; }
+        public Client Client { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using TourAgencyDatabaseImplement;
 namespace TourAgencyDatabaseImplement.Migrations
 {
     [DbContext(typeof(TourAgencyDatabase))]
-    [Migration("20200313065807_InitialCreate")]
+    [Migration("20200521125953_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,12 +21,36 @@ namespace TourAgencyDatabaseImplement.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClientFIO")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -47,6 +71,8 @@ namespace TourAgencyDatabaseImplement.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("VoucherId");
 
@@ -79,16 +105,11 @@ namespace TourAgencyDatabaseImplement.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("TourId")
-                        .HasColumnType("int");
-
                     b.Property<string>("VoucherName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TourId");
 
                     b.ToTable("Vouchers");
                 });
@@ -113,26 +134,24 @@ namespace TourAgencyDatabaseImplement.Migrations
 
                     b.HasIndex("TourId");
 
-                    b.HasIndex("VoucherId")
-                        .IsUnique();
+                    b.HasIndex("VoucherId");
 
                     b.ToTable("VoucherTours");
                 });
 
             modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("TourAgencyDatabaseImplement.Models.Voucher", "Voucher")
+                    b.HasOne("TourAgencyDatabaseImplement.Models.Client", "Client")
                         .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TourAgencyDatabaseImplement.Models.Voucher", "Voucher")
+                        .WithMany("Orders")
                         .HasForeignKey("VoucherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Voucher", b =>
-                {
-                    b.HasOne("TourAgencyDatabaseImplement.Models.Tour", "Tour")
-                        .WithMany()
-                        .HasForeignKey("TourId");
                 });
 
             modelBuilder.Entity("TourAgencyDatabaseImplement.Models.VoucherTour", b =>
@@ -144,8 +163,8 @@ namespace TourAgencyDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("TourAgencyDatabaseImplement.Models.Voucher", "Voucher")
-                        .WithOne("VoucherTour")
-                        .HasForeignKey("TourAgencyDatabaseImplement.Models.VoucherTour", "VoucherId")
+                        .WithMany("VoucherTours")
+                        .HasForeignKey("VoucherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

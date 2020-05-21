@@ -36,6 +36,8 @@
             this.comboBoxVoucher = new System.Windows.Forms.ComboBox();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.labelClient = new System.Windows.Forms.Label();
+            this.comboBoxClient = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // labelVoucher
@@ -109,11 +111,32 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
+            // labelClient
+            // 
+            this.labelClient.AutoSize = true;
+            this.labelClient.Location = new System.Drawing.Point(36, 54);
+            this.labelClient.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelClient.Name = "labelClient";
+            this.labelClient.Size = new System.Drawing.Size(43, 13);
+            this.labelClient.TabIndex = 15;
+            this.labelClient.Text = "Клиент";
+            // 
+            // comboBoxClient
+            // 
+            this.comboBoxClient.FormattingEnabled = true;
+            this.comboBoxClient.Location = new System.Drawing.Point(106, 51);
+            this.comboBoxClient.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxClient.Name = "comboBoxClient";
+            this.comboBoxClient.Size = new System.Drawing.Size(240, 21);
+            this.comboBoxClient.TabIndex = 16;
+            // 
             // FormCreateOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 224);
+            this.Controls.Add(this.comboBoxClient);
+            this.Controls.Add(this.labelClient);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.comboBoxVoucher);
@@ -139,5 +162,7 @@
         private System.Windows.Forms.ComboBox comboBoxVoucher;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Label labelClient;
+        private System.Windows.Forms.ComboBox comboBoxClient;
     }
 }
