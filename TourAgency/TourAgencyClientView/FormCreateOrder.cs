@@ -20,10 +20,10 @@ namespace TourAgencyClientView
         {
             try
             {
-                comboBoxSnack.DisplayMember = "SnackName";
+                comboBoxSnack.DisplayMember = "VoucherName";
                 comboBoxSnack.ValueMember = "Id";
                 comboBoxSnack.DataSource =
-               APIClient.GetRequest<List<VoucherViewModel>>("api/main/getSnacklist");
+               APIClient.GetRequest<List<VoucherViewModel>>("api/main/getVoucherlist");
                 comboBoxSnack.SelectedItem = null;
             }
             catch (Exception ex)
@@ -40,10 +40,10 @@ namespace TourAgencyClientView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxSnack.SelectedValue);
-                    VoucherViewModel Snack =
-APIClient.GetRequest<VoucherViewModel>($"api/main/getSnack?SnackId={id}");
+                    VoucherViewModel Voucher =
+APIClient.GetRequest<VoucherViewModel>($"api/main/getVoucher?VoucherId={id}");
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * Snack.Price).ToString();
+                    textBoxSum.Text = (count * Voucher.Price).ToString();
                 }
                 catch (Exception ex)
                 {

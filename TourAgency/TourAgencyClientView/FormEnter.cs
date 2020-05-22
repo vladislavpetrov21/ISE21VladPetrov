@@ -29,7 +29,7 @@ namespace TourAgencyClientView
                 try
                 {
                     Program.Client =
-                   APIClient.GetRequest<ClientViewModel>($"api/client/login?login={textBoxEmail.Text}&password ={ textBoxPassword.Text}");
+                   APIClient.GetRequest<ClientViewModel>($"api/client/login?login={textBoxEmail.Text}&password={textBoxPassword.Text}");
                 Close();
                 }
                 catch (Exception ex)

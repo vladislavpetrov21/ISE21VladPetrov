@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TourAgencyBusinessLogic\TourAgencyBusinessLogic.csproj" />
+    <ProjectReference Include="..\TourAgencyDatabaseImplement\TourAgencyDatabaseImplement.csproj" />
+    <ProjectReference Include="..\TourAgencyFileImplement\TourAgencyFileImplement.csproj" />
+    <ProjectReference Include="..\TourAgencyListImplement\TourAgencyListImplement.csproj" />
   </ItemGroup>
 
 </Project>

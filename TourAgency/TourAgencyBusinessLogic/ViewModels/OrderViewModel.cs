@@ -15,6 +15,7 @@ namespace TourAgencyBusinessLogic.ViewModels
         [DataMember]
         public int ClientId { get; set; }
         [DataMember]
+        [DisplayName("ID")]
         public int VoucherId { get; set; }
         [DataMember]
         [DisplayName("Клиент")]
