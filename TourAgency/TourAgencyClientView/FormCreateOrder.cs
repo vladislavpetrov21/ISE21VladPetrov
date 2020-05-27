@@ -20,11 +20,11 @@ namespace TourAgencyClientView
         {
             try
             {
-                comboBoxSnack.DisplayMember = "VoucherName";
-                comboBoxSnack.ValueMember = "Id";
-                comboBoxSnack.DataSource =
+                comboBoxVoucher.DisplayMember = "VoucherName";
+                comboBoxVoucher.ValueMember = "Id";
+                comboBoxVoucher.DataSource =
                APIClient.GetRequest<List<VoucherViewModel>>("api/main/getVoucherlist");
-                comboBoxSnack.SelectedItem = null;
+                comboBoxVoucher.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -34,14 +34,14 @@ namespace TourAgencyClientView
         }
         private void CalcSum()
         {
-            if (comboBoxSnack.SelectedValue != null &&
+            if (comboBoxVoucher.SelectedValue != null &&
            !string.IsNullOrEmpty(textBoxCount.Text))
             {
                 try
                 {
-                    int id = Convert.ToInt32(comboBoxSnack.SelectedValue);
+                    int id = Convert.ToInt32(comboBoxVoucher.SelectedValue);
                     VoucherViewModel Voucher =
-APIClient.GetRequest<VoucherViewModel>($"api/main/getVoucher?VoucherId={id}");
+                    APIClient.GetRequest<VoucherViewModel>($"api/main/getVoucher?VoucherId={id}");
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * Voucher.Price).ToString();
                 }
@@ -56,7 +56,7 @@ APIClient.GetRequest<VoucherViewModel>($"api/main/getVoucher?VoucherId={id}");
         {
             CalcSum();
         }
-        private void ComboBoxSnack_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxVoucher_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -68,7 +68,7 @@ APIClient.GetRequest<VoucherViewModel>($"api/main/getVoucher?VoucherId={id}");
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxSnack.SelectedValue == null)
+            if (comboBoxVoucher.SelectedValue == null)
             {
                 MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -79,7 +79,7 @@ APIClient.GetRequest<VoucherViewModel>($"api/main/getVoucher?VoucherId={id}");
                 APIClient.PostRequest("api/main/createorder", new CreateOrderBindingModel
                 {
                     ClientId = Program.Client.Id,
-                    VoucherId = Convert.ToInt32(comboBoxSnack.SelectedValue),
+                    VoucherId = Convert.ToInt32(comboBoxVoucher.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

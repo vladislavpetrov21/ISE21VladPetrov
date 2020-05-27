@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelSnack = new System.Windows.Forms.Label();
-            this.comboBoxSnack = new System.Windows.Forms.ComboBox();
+            this.labelVoucher = new System.Windows.Forms.Label();
+            this.comboBoxVoucher = new System.Windows.Forms.ComboBox();
             this.labelCount = new System.Windows.Forms.Label();
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.labelSum = new System.Windows.Forms.Label();
@@ -37,26 +37,26 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelSnack
+            // labelVoucher
             // 
-            this.labelSnack.AutoSize = true;
-            this.labelSnack.Location = new System.Drawing.Point(14, 41);
-            this.labelSnack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSnack.Name = "labelSnack";
-            this.labelSnack.Size = new System.Drawing.Size(56, 15);
-            this.labelSnack.TabIndex = 0;
-            this.labelSnack.Text = "Изделие:";
+            this.labelVoucher.AutoSize = true;
+            this.labelVoucher.Location = new System.Drawing.Point(14, 41);
+            this.labelVoucher.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelVoucher.Name = "labelVoucher";
+            this.labelVoucher.Size = new System.Drawing.Size(56, 15);
+            this.labelVoucher.TabIndex = 0;
+            this.labelVoucher.Text = "Изделие:";
             // 
-            // comboBoxSnack
+            // comboBoxVoucher
             // 
-            this.comboBoxSnack.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSnack.FormattingEnabled = true;
-            this.comboBoxSnack.Location = new System.Drawing.Point(102, 38);
-            this.comboBoxSnack.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBoxSnack.Name = "comboBoxSnack";
-            this.comboBoxSnack.Size = new System.Drawing.Size(252, 23);
-            this.comboBoxSnack.TabIndex = 1;
-            this.comboBoxSnack.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSnack_SelectedIndexChanged);
+            this.comboBoxVoucher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxVoucher.FormattingEnabled = true;
+            this.comboBoxVoucher.Location = new System.Drawing.Point(102, 38);
+            this.comboBoxVoucher.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.comboBoxVoucher.Name = "comboBoxVoucher";
+            this.comboBoxVoucher.Size = new System.Drawing.Size(252, 23);
+            this.comboBoxVoucher.TabIndex = 1;
+            this.comboBoxVoucher.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVoucher_SelectedIndexChanged);
             // 
             // labelCount
             // 
@@ -117,8 +117,8 @@
             this.Controls.Add(this.labelSum);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.labelCount);
-            this.Controls.Add(this.comboBoxSnack);
-            this.Controls.Add(this.labelSnack);
+            this.Controls.Add(this.comboBoxVoucher);
+            this.Controls.Add(this.labelVoucher);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormCreateOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -129,8 +129,8 @@
 
         }
         #endregion
-        private System.Windows.Forms.Label labelSnack;
-        private System.Windows.Forms.ComboBox comboBoxSnack;
+        private System.Windows.Forms.Label labelVoucher;
+        private System.Windows.Forms.ComboBox comboBoxVoucher;
         private System.Windows.Forms.Label labelCount;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.Label labelSum;
