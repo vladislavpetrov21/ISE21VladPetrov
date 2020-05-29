@@ -16,11 +16,13 @@ namespace TourAgencyDatabaseImplement.Models
         [Required]
         public decimal Sum { get; set; }
         [Required]
+        public int? ImplementerId { get; set; }
         public OrderStatus Status { get; set; }
         [Required]
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Voucher Voucher { get; set; }
         public Client Client { get; set; }
+        public Implementer Implementer { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace TourAgencyListImplement
         public List<Voucher> Vouchers { get; set; }
         public List<VoucherTour> VoucherTours { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
         private DataListSingleton()
         {           
             Tours = new List<Tour>();
@@ -20,6 +21,7 @@ namespace TourAgencyListImplement
             Vouchers = new List<Voucher>();
             VoucherTours = new List<VoucherTour>();
             Clients = new List<Client>();
+            Implementers = new List<Implementer>();
         }
 
         public static DataListSingleton GetInstance()

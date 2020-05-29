@@ -7,6 +7,7 @@ using TourAgencyBusinessLogic.BindingModels;
 using TourAgencyBusinessLogic.Interfaces;
 using TourAgencyBusinessLogic.ViewModels;
 using TourAgencyDatabaseImplement.Models;
+using TourAgencyBusinessLogic.Enums;
 
 namespace TourAgencyDatabaseImplement.Implements
 {
@@ -32,7 +33,8 @@ namespace TourAgencyDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.VoucherId = model.VoucherId == 0 ? element.VoucherId : model.VoucherId;
-                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
+                element.ClientId = model.ClientId.Value;
+                element.ImplementerId = model.ImplementerId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;
@@ -62,20 +64,23 @@ namespace TourAgencyDatabaseImplement.Implements
         {
             using (var context = new TourAgencyDatabase())
             {
-                return context.Orders.Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
-                 || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
-
-                 (model.ClientId.HasValue && rec.ClientId == model.ClientId))
-                    .Include(rec => rec.Voucher)
-                .Include(rec => rec.Client)
-                 .Select(rec => new OrderViewModel
+                return context.Orders.Where(rec => model == null
+                   || rec.Id == model.Id && model.Id.HasValue
+                   || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
+                   || model.ClientId.HasValue && rec.ClientId == model.ClientId
+                   || model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue
+                   || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется)
+                .Select(rec => new OrderViewModel
                  {
                 Id = rec.Id,
                 VoucherName = rec.Voucher.VoucherName,
                 ClientId = rec.ClientId,
                 ClientFIO = rec.Client.ClientFIO,
+                ImplementerId = rec.ImplementerId,
                 Count = rec.Count,
                 Sum = rec.Sum,
+                ImplementerFIO = rec.ImplementerId.HasValue ?
+                rec.Implementer.ImplementerFIO : string.Empty,
                 Status = rec.Status,
                 DateCreate = rec.DateCreate,
                 DateImplement = rec.DateImplement

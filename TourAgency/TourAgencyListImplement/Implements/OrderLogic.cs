@@ -5,6 +5,7 @@ using TourAgencyBusinessLogic.BindingModels;
 using TourAgencyBusinessLogic.Interfaces;
 using TourAgencyBusinessLogic.ViewModels;
 using TourAgencyListImplement.Models;
+using TourAgencyBusinessLogic.Enums;
 
 namespace TourAgencyListImplement.Implements
 {
@@ -66,7 +67,13 @@ namespace TourAgencyListImplement.Implements
                 if (model != null)
                 {
                     if (order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo)
-                        || model.ClientId.HasValue && order.ClientId == model.ClientId)
+                        || model.ClientId.HasValue && order.ClientId == model.ClientId
+
+
+                        || model.FreeOrders.HasValue && model.FreeOrders.Value
+
+
+                    || model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется)
                     {
                         result.Add(CreateViewModel(order));
                         break;
@@ -83,6 +90,7 @@ namespace TourAgencyListImplement.Implements
             order.ClientId = (int)model.ClientId;
             order.Count = model.Count;
             order.Sum = model.Sum;
+            order.ImplementerId = model.ImplementerId;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
