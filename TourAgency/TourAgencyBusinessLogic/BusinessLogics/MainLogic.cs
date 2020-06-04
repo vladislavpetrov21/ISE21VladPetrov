@@ -110,6 +110,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
+                ImplementerId = order.ImplementerId,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });

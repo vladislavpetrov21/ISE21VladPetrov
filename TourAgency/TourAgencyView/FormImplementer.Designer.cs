@@ -127,7 +127,7 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxFIO);
             this.Controls.Add(this.labelFIO);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormImplementer";
             this.Text = "Исполнитель";
             this.Load += new System.EventHandler(this.FormImplementer_Load);
