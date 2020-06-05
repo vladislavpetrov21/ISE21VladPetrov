@@ -72,19 +72,19 @@ namespace TourAgencyDatabaseImplement.Implements
                    || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется)
                 .Select(rec => new OrderViewModel
                  {
-                Id = rec.Id,
+                Id = rec.Id,              
+                ClientId = rec.ClientId,              
+                ImplementerId = rec.ImplementerId,    
+                VoucherId = rec.VoucherId,
                 VoucherName = rec.Voucher.VoucherName,
-                ClientId = rec.ClientId,
-                ClientFIO = rec.Client.ClientFIO,
-                ImplementerId = rec.ImplementerId,
                 Count = rec.Count,
-                Sum = rec.Sum,
-                ImplementerFIO = rec.ImplementerId.HasValue ?
-                rec.Implementer.ImplementerFIO : string.Empty,
+                Sum = rec.Sum,               
                 Status = rec.Status,
                 DateCreate = rec.DateCreate,
-                DateImplement = rec.DateImplement
-            })
+                DateImplement = rec.DateImplement,
+                ClientFIO = rec.Client.ClientFIO,
+                ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
+                })
             .ToList();
             }
         }

@@ -13,9 +13,9 @@ namespace TourAgencyDatabaseImplement.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientFIO = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true)
+                    ClientFIO = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,7 +93,7 @@ namespace TourAgencyDatabaseImplement.Migrations
                         column: x => x.ImplementerId,
                         principalTable: "Implementers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Vouchers_VoucherId",
                         column: x => x.VoucherId,

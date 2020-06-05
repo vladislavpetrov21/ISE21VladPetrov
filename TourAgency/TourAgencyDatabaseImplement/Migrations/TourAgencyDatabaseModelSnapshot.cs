@@ -81,7 +81,6 @@ namespace TourAgencyDatabaseImplement.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("ImplementerId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Status")

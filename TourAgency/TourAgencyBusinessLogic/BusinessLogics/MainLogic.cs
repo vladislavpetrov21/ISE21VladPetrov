@@ -80,9 +80,9 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 Id = order.Id,
                 VoucherId = order.VoucherId,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
-                ImplementerId = order.ImplementerId,
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Готов
@@ -107,10 +107,10 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 Id = order.Id,
                 VoucherId = order.VoucherId,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
-                ImplementerId = order.ImplementerId,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });

@@ -108,6 +108,7 @@ namespace TourAgencyListImplement.Implements
                 Id = order.Id,
                 VoucherName = VoucherName,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status,
