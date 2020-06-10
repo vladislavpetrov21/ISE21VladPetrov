@@ -47,6 +47,7 @@ namespace TourAgencyFileImplement
             SaveOrders();
             SaveVouchers();
             SaveVoucherTours();
+            SaveClients();
             SaveImplementers();
         }
         private List<Tour> LoadTours()
