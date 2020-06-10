@@ -21,16 +21,14 @@ namespace TourAgencyView
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
         private readonly ReportLogic report;
-        private readonly IClientLogic client;
         private readonly WorkModeling work;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic, WorkModeling work, ReportLogic report, IClientLogic client)
+        public FormMain(MainLogic logic, IOrderLogic orderLogic, WorkModeling work, ReportLogic report)
         {
             InitializeComponent();
             this.logic = logic;
             this.orderLogic = orderLogic;
             this.report = report;
             this.work = work;
-            this.client = client;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -47,9 +45,9 @@ namespace TourAgencyView
                     dataGridViewMain.Columns[0].Visible = false;
                     dataGridViewMain.Columns[1].Visible = false;
                     dataGridViewMain.Columns[2].Visible = false;
-                    dataGridViewMain.Columns[5].Visible = false;
-                    dataGridViewMain.Columns[5].AutoSizeMode =
-                   DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridViewMain.Columns[3].Visible = false;
+                    dataGridViewMain.Columns[3].AutoSizeMode =
+                    DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)

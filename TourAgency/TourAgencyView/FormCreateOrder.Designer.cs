@@ -127,7 +127,7 @@
             this.comboBoxClient.Location = new System.Drawing.Point(180, 19);
             this.comboBoxClient.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxClient.Name = "comboBoxClient";
-            this.comboBoxClient.Size = new System.Drawing.Size(240, 21);
+            this.comboBoxClient.Size = new System.Drawing.Size(279, 21);
             this.comboBoxClient.TabIndex = 16;
             // 
             // FormCreateOrder

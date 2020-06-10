@@ -83,7 +83,7 @@ namespace TourAgencyDatabaseImplement.Implements
                 DateCreate = rec.DateCreate,
                 DateImplement = rec.DateImplement,
                 ClientFIO = rec.Client.ClientFIO,
-                ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
+                ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty
                 })
             .ToList();
             }
