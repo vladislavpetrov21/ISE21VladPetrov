@@ -79,15 +79,15 @@ namespace TourAgencyDatabaseImplement.Implements
                   ClientId = rec.ClientId,              
                   ImplementerId = rec.ImplementerId,    
                   VoucherId = rec.VoucherId,
-                  VoucherName = rec.Voucher.VoucherName,
                   Count = rec.Count,
                   Sum = rec.Sum,               
                   Status = rec.Status,
                   DateCreate = rec.DateCreate,
                   DateImplement = rec.DateImplement,
                   ClientFIO = rec.Client.ClientFIO,
-                  ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty
-                  })
+                  ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
+                 VoucherName = rec.Voucher.VoucherName,
+                 })
               .ToList();
               }
           }        

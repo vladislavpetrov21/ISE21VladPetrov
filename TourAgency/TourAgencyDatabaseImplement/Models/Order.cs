@@ -15,7 +15,6 @@ namespace TourAgencyDatabaseImplement.Models
         public int Count { get; set; }
         [Required]
         public decimal Sum { get; set; }
-        [Required]
         public int? ImplementerId { get; set; }
         public OrderStatus Status { get; set; }
         [Required]
