@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace TourAgencyDatabaseImplement.Models
@@ -10,5 +11,8 @@ namespace TourAgencyDatabaseImplement.Models
         public string ClientFIO { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        [ForeignKey("ClientId")]
+        public List<Order> Orders { get; set; }
+        public List<MessageInfo> MessageInfoes { get; set; }
     }
 }

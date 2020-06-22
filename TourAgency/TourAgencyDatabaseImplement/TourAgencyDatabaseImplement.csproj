@@ -15,6 +15,8 @@
     <Compile Remove="Migrations\20200528133530_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20200605050821_ImitialCreate.cs" />
     <Compile Remove="Migrations\20200605050821_ImitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200605071418_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200605071418_InitialCreate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TourAgencyBusinessLogic\TourAgencyBusinessLogic.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -98,8 +98,7 @@ namespace TourAgencyView
                    MessageBoxIcon.Error);
                 }
             }
-        }
-       
+        }       
         private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
@@ -133,6 +132,11 @@ namespace TourAgencyView
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormClients>();
+            form.ShowDialog();
+        }
+        private void сообщенияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormMessages>();
             form.ShowDialog();
         }
     }

@@ -10,7 +10,7 @@ using TourAgencyDatabaseImplement;
 namespace TourAgencyDatabaseImplement.Migrations
 {
     [DbContext(typeof(TourAgencyDatabase))]
-    [Migration("20200605071418_InitialCreate")]
+    [Migration("20200619190111_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,33 @@ namespace TourAgencyDatabaseImplement.Migrations
                     b.ToTable("Implementers");
                 });
 
+            modelBuilder.Entity("TourAgencyDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("MessageInfoes");
+                });
+
             modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -83,7 +110,6 @@ namespace TourAgencyDatabaseImplement.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("ImplementerId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -166,19 +192,24 @@ namespace TourAgencyDatabaseImplement.Migrations
                     b.ToTable("VoucherTours");
                 });
 
+            modelBuilder.Entity("TourAgencyDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.HasOne("TourAgencyDatabaseImplement.Models.Client", "Client")
+                        .WithMany("MessageInfoes")
+                        .HasForeignKey("ClientId");
+                });
+
             modelBuilder.Entity("TourAgencyDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("TourAgencyDatabaseImplement.Models.Client", "Client")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TourAgencyDatabaseImplement.Models.Implementer", "Implementer")
                         .WithMany("Orders")
-                        .HasForeignKey("ImplementerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ImplementerId");
 
                     b.HasOne("TourAgencyDatabaseImplement.Models.Voucher", "Voucher")
                         .WithMany("Orders")

@@ -32,6 +32,7 @@ namespace TourAgencyRestApi
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IVoucherLogic, VoucherLogic>();
             services.AddTransient<MainLogic>();
+            services.AddTransient<IMessageInfoLogic, MessageInfoLogic>();
             services.AddControllers();
         }
 
