@@ -31,14 +31,7 @@ namespace TourAgencyView
         {
             try
             {
-                var list = logic.Read(null);
-                if (list != null)
-                {
-                    dataGridViewVouchers.DataSource = list;
-                    dataGridViewVouchers.Columns[0].Visible = false;
-                    dataGridViewVouchers.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    dataGridViewVouchers.Columns[3].Visible = false;
-                }
+                Program.ConfigGrid(logic.Read(null), dataGridViewVouchers);
             }
             catch (Exception ex)
             {

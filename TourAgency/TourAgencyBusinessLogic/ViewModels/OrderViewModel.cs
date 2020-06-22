@@ -4,42 +4,53 @@ using System.ComponentModel;
 using System.Text;
 using TourAgencyBusinessLogic.Enums;
 using System.Runtime.Serialization;
+using TourAgencyBusinessLogic.Attributes;
 
 namespace TourAgencyBusinessLogic.ViewModels
 {
     [DataContract]
-    public class OrderViewModel
-    {
-        [DataMember]
-        public int Id { get; set; }
+    public class OrderViewModel : BaseViewModel
+    {       
         [DataMember]
         public int ClientId { get; set; }
         [DataMember]
         public int? ImplementerId { get; set; }       
         public int VoucherId { get; set; }
         [DataMember]
-        [DisplayName("Клиент")]
+        [Column(title: "Клиент", width: 150)]
         public string ClientFIO { get; set; }
         [DataMember]
-        [DisplayName("Исполнитель")]
+        [Column(title: "Исполнитель", width: 100)]
         public string ImplementerFIO { get; set; }
         [DataMember]
-        [DisplayName("Путевка")]
+        [Column(title: "Путевка", width: 100)]
         public string VoucherName { get; set; }
-        [DisplayName("Количество")]
+        [Column(title: "Количество", width: 100)]
         [DataMember]
         public int Count { get; set; }
-        [DisplayName("Сумма")]
+        [Column(title: "Сумма", width: 50)]
         [DataMember]
         public decimal Sum { get; set; }
-        [DisplayName("Статус")]
+        [Column(title: "Статус", width: 100)]
         [DataMember]
         public OrderStatus Status { get; set; }
-        [DisplayName("Дата создания")]
+        [Column(title: "Дата создания", width: 100)]
         [DataMember]
         public DateTime DateCreate { get; set; }
-        [DisplayName("Дата выполнения")]
+        [Column(title: "Дата выполнения", width: 100)]
         [DataMember]
         public DateTime? DateImplement { get; set; }
+        public override List<string> Properties() => new List<string>
+        {
+            "Id",
+            "ClientFIO",
+            "VoucherName",
+            "ImplementerFIO",
+            "Count",
+            "Sum",
+            "Status",
+            "DateCreate",
+            "DateImplement"
+        };
     }
 }

@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
+using TourAgencyBusinessLogic.Attributes;
 
 namespace TourAgencyBusinessLogic.ViewModels
 {
     [DataContract]
-    public class VoucherViewModel
+    public class VoucherViewModel : BaseViewModel
     {
+        [Column(title: "Название закуски", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        [DisplayName("Название путевки")]
         public string VoucherName { get; set; }
+        [Column(title: "Цена", width: 50)]
         [DataMember]
-        [DisplayName("Цена")]
         public decimal Price { get; set; }
         [DataMember]
         public Dictionary<int, (string, int)> VoucherTours { get; set; }
+        public override List<string> Properties() => new List<string>
+        {
+            "Id",
+            "SnackName",
+            "Price"
+        };
     }
 }
