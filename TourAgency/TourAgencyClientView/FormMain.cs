@@ -24,8 +24,8 @@ namespace TourAgencyClientView
                 dataGridView.Columns[0].Visible = false;
                 dataGridView.Columns[1].Visible = false;
                 dataGridView.Columns[2].Visible = false;
-                dataGridView.Columns[5].Visible = false;
-                dataGridView.Columns[5].AutoSizeMode =
+                dataGridView.Columns[3].Visible = false;
+                dataGridView.Columns[3].AutoSizeMode =
                DataGridViewAutoSizeColumnMode.Fill;
             }
             catch (Exception ex)
