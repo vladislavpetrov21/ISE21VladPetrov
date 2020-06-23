@@ -54,11 +54,10 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                         objMailMessage.BodyEncoding = Encoding.UTF8;
                         objSmtpClient.UseDefaultCredentials = false;
                         objSmtpClient.EnableSsl = true;
-                    objSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        objSmtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                         objSmtpClient.Credentials = new NetworkCredential(mailLogin,
                         mailPassword);
-                        await Task.Run(() => objSmtpClient.SendAsync(objMailMessage,
-                       null));
+                        objSmtpClient.Send(objMailMessage);
                     }
                     catch (Exception)
                     {
@@ -86,7 +85,7 @@ namespace TourAgencyBusinessLogic.BusinessLogics
                 await Task.Run(() =>
                 {
                     client.Connect(info.PopHost, info.PopPort,
-                   SecureSocketOptions.SslOnConnect);
+                  SecureSocketOptions.SslOnConnect);
                     client.Authenticate(mailLogin, mailPassword);
                     for (int i = 0; i < client.Count; i++)
                     {
