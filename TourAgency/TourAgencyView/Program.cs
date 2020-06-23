@@ -34,6 +34,7 @@ namespace TourAgencyView
             currentContainer.RegisterType<IVoucherLogic, VoucherLogic>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStorageLogic, StorageLogic>(new HierarchicalLifetimeManager());
             return currentContainer;          
         }
     }

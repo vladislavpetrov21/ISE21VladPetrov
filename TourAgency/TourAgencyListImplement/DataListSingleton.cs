@@ -12,12 +12,16 @@ namespace TourAgencyListImplement
         public List<Order> Orders { get; set; }
         public List<Voucher> Vouchers { get; set; }
         public List<VoucherTour> VoucherTours { get; set; }
+        public List<Storage> Storages { get; set; }
+        public List<StorageTours> StorageTours { get; set; }
         private DataListSingleton()
         {           
             Tours = new List<Tour>();
             Orders = new List<Order>();
             Vouchers = new List<Voucher>();
             VoucherTours = new List<VoucherTour>();
+            Storages = new List<Storage>();
+            StorageTours = new List<StorageTours>();
         }
 
         public static DataListSingleton GetInstance()

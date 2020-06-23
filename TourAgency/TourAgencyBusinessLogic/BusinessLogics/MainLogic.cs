@@ -10,9 +10,15 @@ namespace TourAgencyBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IStorageLogic storageLogic;
+        public MainLogic(IOrderLogic orderLogic, IStorageLogic storageLogic)
         {
             this.orderLogic = orderLogic;
+            this.storageLogic = storageLogic;
+        }
+        public void FillStorage(StorageToursBindingModel model)
+        {
+            storageLogic.FillStorage(model);
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
