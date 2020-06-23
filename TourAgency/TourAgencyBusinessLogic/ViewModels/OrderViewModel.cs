@@ -16,14 +16,14 @@ namespace TourAgencyBusinessLogic.ViewModels
         [DataMember]
         public int? ImplementerId { get; set; }       
         public int VoucherId { get; set; }
-        [DataMember]
         [Column(title: "Клиент", width: 150)]
+        [DataMember]
         public string ClientFIO { get; set; }
-        [DataMember]
         [Column(title: "Исполнитель", width: 100)]
-        public string ImplementerFIO { get; set; }
         [DataMember]
+        public string ImplementerFIO { get; set; }
         [Column(title: "Путевка", width: 100)]
+        [DataMember]
         public string VoucherName { get; set; }
         [Column(title: "Количество", width: 100)]
         [DataMember]
