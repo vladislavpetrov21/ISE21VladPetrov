@@ -10,7 +10,7 @@ namespace TourAgencyBusinessLogic.ViewModels
     [DataContract]
     public class VoucherViewModel : BaseViewModel
     {
-        [Column(title: "Название закуски", gridViewAutoSize: GridViewAutoSize.Fill)]
+        [Column(title: "Название путевки", gridViewAutoSize: GridViewAutoSize.Fill)]
         [DataMember]
         public string VoucherName { get; set; }
         [Column(title: "Цена", width: 50)]
@@ -21,7 +21,7 @@ namespace TourAgencyBusinessLogic.ViewModels
         public override List<string> Properties() => new List<string>
         {
             "Id",
-            "SnackName",
+            "VoucherName",
             "Price"
         };
     }
